@@ -167,6 +167,10 @@ var app = {
         resultDiv.scrollTop = resultDiv.scrollHeight;
 
         inu = bytesToString(data);
+				var res = inu.split(",");
+				var acc = res[0]+","+res[1]+","+res[2];
+				var gir = res[3]+","+res[4]+","+res[5];
+				var mag = res[6]+","+res[7]+","+res[8];
 
         if(live === true && save === false){
           var ipAd = document.getElementById('ips').value;
@@ -174,8 +178,20 @@ var app = {
           osc.send({
               remoteAddress: ipAd,
               remotePort: portAd,
-              address: '/mpu',
-              arguments: [inu]
+              address: '/acc',
+              arguments: [acc]
+          });
+					osc.send({
+              remoteAddress: ipAd,
+              remotePort: portAd,
+              address: '/gir',
+              arguments: [gir]
+          });
+					osc.send({
+              remoteAddress: ipAd,
+              remotePort: portAd,
+              address: '/mag',
+              arguments: [mag]
           });
         }else if(save === true && live === false){
           writeLog( bytesToString(data) );
