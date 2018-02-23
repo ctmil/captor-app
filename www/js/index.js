@@ -167,32 +167,45 @@ var app = {
         resultDiv.scrollTop = resultDiv.scrollHeight;
 
         inu = bytesToString(data);
-				var res = inu.split(",");
-				var acc = res[0]+","+res[1]+","+res[2];
-				var gir = res[3]+","+res[4]+","+res[5];
-				var mag = res[6]+","+res[7]+","+res[8];
+				var res = inu.split(":");
+				if(res[0] === "a"){
+					var acc = res[1];
+					acc = acc.replace(/[a-z]/g, "");
+				}else if(res[0] === "g"){
+					var gir = res[1];
+					gir = gir.replace(/[a-z]/g, "");
+				}else if(res[0] === "m"){
+					var mag = res[1];
+					mag = mag.replace(/[a-z]/g, "");
+				}
 
         if(live === true && save === false){
           var ipAd = document.getElementById('ips').value;
           var portAd = parseInt( document.getElementById('port').value);
-          osc.send({
-              remoteAddress: ipAd,
-              remotePort: portAd,
-              address: '/acc',
-              arguments: [acc]
-          });
-					osc.send({
-              remoteAddress: ipAd,
-              remotePort: portAd,
-              address: '/gir',
-              arguments: [gir]
-          });
-					osc.send({
-              remoteAddress: ipAd,
-              remotePort: portAd,
-              address: '/mag',
-              arguments: [mag]
-          });
+					if(res[0] === "a"){
+						osc.send({
+	              remoteAddress: ipAd,
+	              remotePort: portAd,
+	              address: '/acc',
+	              arguments: [acc]
+	          });
+					}
+					if(res[0] === "g"){
+						osc.send({
+	              remoteAddress: ipAd,
+	              remotePort: portAd,
+	              address: '/gir',
+	              arguments: [gir]
+	          });
+					}
+					if(res[0] === "m"){
+						osc.send({
+	              remoteAddress: ipAd,
+	              remotePort: portAd,
+	              address: '/mag',
+	              arguments: [mag]
+	          });
+					}
         }else if(save === true && live === false){
           writeLog( bytesToString(data) );
         }
