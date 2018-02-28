@@ -58,9 +58,17 @@ var app = {
     },
     onDeviceReady: function() {
         app.refreshDeviceList();
-	cordova.plugins.backgroundMode.enable();
+				cordova.plugins.backgroundMode.enable();
 
         osc = new OSC();
+				osc.startListening(10800,
+				  function(){
+				    console.log('Conectado')
+				  },
+				  function(err){
+				    console.log('Error: ', err)
+				  }
+				);
 
 				app.logFile("test");
 

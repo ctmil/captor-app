@@ -14,6 +14,7 @@
     "cordova-ios": "^4.4.0",
     "cordova-plugin-background-mode": "^0.7.2",
     "cordova-plugin-ble-central": "^1.1.4",
+    "cordova-plugin-bluetooth-serial": "^0.4.7",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-console": "^1.1.0",
     "cordova-plugin-device": "^1.1.7",
@@ -34,7 +35,8 @@
       "cordova-plugin-console": {},
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-background-mode": {},
-      "cordova-plugin-file": {}
+      "cordova-plugin-file": {},
+      "cordova-plugin-bluetooth-serial": {}
     },
     "platforms": [
       "android",
